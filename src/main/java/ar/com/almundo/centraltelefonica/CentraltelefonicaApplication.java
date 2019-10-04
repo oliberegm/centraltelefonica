@@ -1,14 +1,14 @@
 package ar.com.almundo.centraltelefonica;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
-
+/**
+ * Clase raiz
+ * @author oliber garcia
+ *
+ */
 public class CentraltelefonicaApplication {
 
 	public static void main(String[] args) {
@@ -35,16 +35,16 @@ public class CentraltelefonicaApplication {
 		return dispatcher;
 	}
 	public void generateCall(Dispatcher dispatcher){
-		dispatcher.entrante(new Llamada("1"));
-		dispatcher.entrante(new Llamada("2"));
-		dispatcher.entrante(new Llamada("3"));
-		dispatcher.entrante(new Llamada("4"));
-		dispatcher.entrante(new Llamada("5"));
-		dispatcher.entrante(new Llamada("6"));
-		dispatcher.entrante(new Llamada("7"));
-		dispatcher.entrante(new Llamada("8"));
-		dispatcher.entrante(new Llamada("9"));
-		dispatcher.entrante(new Llamada("10"));
+		dispatcher.entrante(new Call("1"));
+		dispatcher.entrante(new Call("2"));
+		dispatcher.entrante(new Call("3"));
+		dispatcher.entrante(new Call("4"));
+		dispatcher.entrante(new Call("5"));
+		dispatcher.entrante(new Call("6"));
+		dispatcher.entrante(new Call("7"));
+		dispatcher.entrante(new Call("8"));
+		dispatcher.entrante(new Call("9"));
+		dispatcher.entrante(new Call("10"));
 		//return dispatcher;
 
 	}

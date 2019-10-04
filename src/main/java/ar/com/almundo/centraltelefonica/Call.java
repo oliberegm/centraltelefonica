@@ -4,17 +4,19 @@ import java.time.LocalDateTime;
 
 /**
  * Clase que permite representar una llamada de un cliente
+ * 
+ * @author oliber garcia
  */
-public class Llamada {
+public class Call {
     private String identificador;
     private LocalDateTime horaEntrante;
     private LocalDateTime horaAtencion;
     private LocalDateTime horaFinalizada;
 
-    public Llamada(){
+    public Call(){
         this.entrante();
     }
-    public Llamada(String identificador){
+    public Call(String identificador){
         this.entrante();
         this.identificador = identificador;
     }

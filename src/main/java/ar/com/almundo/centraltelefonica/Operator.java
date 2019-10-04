@@ -1,5 +1,9 @@
 package ar.com.almundo.centraltelefonica;
-
+/**
+ * Maneja la funcionalidad de los operadores
+ * @author oliber garcia
+ *
+ */
 public class Operator extends Thread {
     private Long cantidadLlamadasAtendidas;
     private Long totalTiempoConsumido;
@@ -21,7 +25,7 @@ public class Operator extends Thread {
      * @throws InterruptedException
      */
     public void callAttention() throws InterruptedException {
-        Llamada llamada;
+        Call llamada;
         llamada = dispatcher.dispatchCall();
         llamada.atencion();
         estado = EstadoEnum.ATENDIENDO;
@@ -35,8 +39,7 @@ public class Operator extends Thread {
     public void run() {
         while (true) {
             try {
-                this.callAttention();
-                //Thread.sleep(totalTiempoConsumido);
+                this.callAttention();                
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

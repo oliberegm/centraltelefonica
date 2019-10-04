@@ -1,21 +1,26 @@
 package ar.com.almundo.centraltelefonica;
 
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 
-
+/**
+ * Maneja la logica de las llamas atendidas con la sincronizacion y bloque para evitar
+ * errores de concurrencia
+ * @author oliber garcia
+ *
+ */
 public class Dispatcher {
-    private ArrayList<Llamada> call;
+	// manejo una lista de llamas para mantener la secuencia de llamas y dar espera mientras son atendidas
+    private ArrayList<Call> call;
     public Dispatcher(){
         this.call = new ArrayList<>();
     }
 
     /**
      * Permite realizar la recepcion de las llamadas por parte de la central
+     * 
      * @param llamada
      */
-    public synchronized void entrante( Llamada llamada){
+    public synchronized void entrante( Call llamada){
             call.add(llamada);
             // notificamos a los operarios la llegadas de una llamada
             notifyAll();
@@ -27,7 +32,7 @@ public class Dispatcher {
      * @return el primero de la lista en espera para ser atendido
      *
      */
-    public synchronized Llamada dispatchCall(){
+    public synchronized Call dispatchCall(){
         while(call.isEmpty()){
             try {
                 this.wait();
@@ -35,7 +40,7 @@ public class Dispatcher {
                 e.printStackTrace();
             }
         }
-        Llamada llamada = call.remove(0);
+        Call llamada = call.remove(0);
         this.notifyAll();
         return llamada;
     }
@@ -49,7 +54,7 @@ public class Dispatcher {
     }
 
     /**
-     * Indica si ha llamadas sin ser atendidas
+     * Indica si hay llamadas sin ser atendidas
      * @return
      */
     public synchronized boolean sinAtencion(){
